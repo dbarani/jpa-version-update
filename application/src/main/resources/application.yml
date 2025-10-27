@@ -1,0 +1,61 @@
+server:
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: /dev
+      prefix: stdout
+      buffered: false
+      suffix:
+      file-date-format:
+      request-attributes-enabled: true
+      pattern: "%t %a \"%r\" %s (%D ms) \"%{User-Agent}i\""
+  forward-headers-strategy: native
+  shutdown: graceful
+  max-http-request-header-size: 64KB
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} %msg%n"
+  level:
+    root: info
+spring:
+  application:
+    name: jpa-version-update
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jpa_version_update
+    username: root
+    password: pl4IN
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    hibernate.ddl-auto: none
+  flyway:
+    locations: db/migration
+    migrate-at-start: true
+    connect-retries: 5
+  cloud:
+    bus:
+      enabled: false
+    discovery:
+      enabled: true
+    consul:
+      config:
+        enabled: true
+      enabled: true
+      discovery:
+        register: false
+      host: host.docker.internal
+      port: 8500
+    gcp:
+      sql:
+        enabled: false
+example:
+  datasource:
+    configs:
+      standard:
+        id: -1
+        name: jpa-version-update
+        url: url

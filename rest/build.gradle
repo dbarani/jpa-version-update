@@ -1,0 +1,11 @@
+dependencies {
+    implementation project (":core")
+    implementation project (":configuration")
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.mapstruct:mapstruct:$mapstructVersion"
+    implementation "jakarta.validation:jakarta.validation-api:$jakartaValidationVersion"
+    annotationProcessor "org.mapstruct:mapstruct-processor:$mapstructVersion"
+    /* TEST IMPLEMENTATION */
+    testImplementation project(path: ':core')
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+}

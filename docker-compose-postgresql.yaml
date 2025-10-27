@@ -1,0 +1,22 @@
+version: '3.8'
+
+networks:
+  jpa-version-update-network:
+
+services:
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=pl4IN
+    ports:
+      - '5432:5432'
+    networks:
+      - jpa-version-update-network
+    volumes:
+      - ./.docker/sql:/docker-entrypoint-initdb.d
+      - postgres-data:/var/lib/postgresql
+
+volumes:
+  postgres-data:

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: jpa-version-update
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        use_sql_comments: false
+        format_sql: true
+  cloud:
+    gcp:
+      core:
+        enabled: false
+    bus:
+      enabled: false
+    consul:
+      config:
+        enabled: false
+      enabled: false
+      discovery:
+        register: false
+    discovery:
+      enabled: false
+logging:
+  level:
+    root: INFO
+    # log hibernate query parameters
+    org:
+      hibernate:
+        orm:
+          jdbc:
+            bind: TRACE
